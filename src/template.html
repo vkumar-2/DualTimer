@@ -5,19 +5,49 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Template | DualTimer</title>
         <link rel="stylesheet" href="./output.css" >
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" type='text/css'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body class="flex flex-col min-h-screen w-full m-0">
-        <header class="min-h-[75px] w-full bg-indigo-950">
-            Text
+        <header class="min-h-[60px] w-full p-2 bg-cyan-950 text-neutral-50 flex items-center">
+            <nav class="flex justify-around w-full">
+                <div id="logo">
+                    <a href="index.html" class="text-3xl font-bold text-fuchsia-400">
+                        <i class="fa-regular fa-clock"></i> DualTimer
+                    </a>
+                </div>
+                <div id="nav-items">
+                    <ul class="text-2xl flex gap-10 lg:gap-20">
+                        <li><a href="timer.html" 
+                            class="text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out hidden md:block">
+                            Timer
+                        </a></li>
+                        <li><a href="stopwatch.html" 
+                            class="text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out hidden md:block">
+                            Stopwatch
+                        </a></li>
+                        <li>
+                            <button id="themes-button" class="cursor-pointer text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out block">
+                                <i class="fa-solid fa-palette"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button id="sidebar-button" 
+                            class="cursor-pointer text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out block md:hidden">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </header>
-        <main class="flex-1">
-            <!-- main content -->
-        </main>
-        <footer class="min-h-[75px] w-full bg-indigo-950">
+        <section id="sidebar"></section>
+        <main class="flex-1 bg-radial from-cyan-50 from-50% to-cyan-500">
             Text
-        </footer>
-        <script src=""></script>
+        </main>
+        <footer></footer>
+        <script src="js/menus.js"></script>
+        <script src="js/themes.js"></script>
     </body>
 </html>

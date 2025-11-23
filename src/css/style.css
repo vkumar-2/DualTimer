@@ -1,3 +1,5 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+
 /* xray lines */
 .xray-1 {border: 3px dashed black;}
 .xray-2 {border: 2px dashed black;}
