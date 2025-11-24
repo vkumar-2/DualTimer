@@ -1,50 +1,31 @@
 <!DOCTYPE html>
-    <html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Template | DualTimer</title>
+        <meta http-equiv="X-UA-Compatible", content="IE-edge">
         <link rel="stylesheet" href="./output.css" >
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" type='text/css'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/fonts.css">
+        <title>Template - DualTimer</title>
     </head>
     <body class="flex flex-col min-h-screen w-full m-0">
-        <header class="min-h-[60px] w-full p-2 bg-cyan-950 text-neutral-50 flex items-center">
-            <nav class="flex justify-around w-full">
-                <div id="logo">
-                    <a href="index.html" class="text-3xl font-bold text-fuchsia-400">
-                        <i class="fa-regular fa-clock"></i> DualTimer
-                    </a>
-                </div>
-                <div id="nav-items">
-                    <ul class="text-2xl flex gap-10 lg:gap-20">
-                        <li><a href="timer.html" 
-                            class="text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out hidden md:block">
-                            Timer
-                        </a></li>
-                        <li><a href="stopwatch.html" 
-                            class="text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out hidden md:block">
-                            Stopwatch
-                        </a></li>
-                        <li>
-                            <button id="themes-button" class="cursor-pointer text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out block">
-                                <i class="fa-solid fa-palette"></i>
-                            </button>
-                        </li>
-                        <li>
-                            <button id="sidebar-button" 
-                            class="cursor-pointer text-zinc-300 hover:text-zinc-500 duration-300 ease-in-out block md:hidden">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <section id="sidebar"></section>
+        <header></header>
+        <section id="sidebar">
+            <div id="sidebar-menu" class="bg-cyan-950 fixed top-0 right-0 h-full w-[0vw]">
+                <ul class="text-zinc-200 text-2xl">
+                    <li><a href="timer.html" class="hover:bg-cyan-900 block text-center p-2">Timer</a></li>
+                    <li><a href="stopwatch.html" class="hover:bg-cyan-900 block text-center p-2">Stopwatch</a></li>
+                </ul>
+            </div>
+            <div id="sidebar-pane" class="fixed top-0 left-0 h-full w-[0vw]"></div>
+        </section>
         <main class="flex-1 bg-radial from-cyan-50 from-50% to-cyan-500">
-            Text
+            <div>
+                Text
+            </div>
         </main>
         <footer></footer>
         <script src="js/menus.js"></script>
