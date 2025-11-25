@@ -34,6 +34,8 @@ const sidebar =
 {
     width: 0,
     isOpen: false,
+    classA: ["bg-cyan-950", "fixed", "top-0", "right-0", "h-full", "w-[0vw]"],
+    classB: ["fixed", "top-0", "left-0", "h-full", "w-[0vw]"],
 
     getWidth: function() {return this.width;},
     setWidth: function(value)
@@ -72,6 +74,83 @@ const sidebar =
         {
             detail: {isOpen: value},
         }));
+    },
+    getClass: function(category, index)
+    {
+        if (index == null)
+        {
+            // print error message if second parameter isn't called
+            return "Index number not entered";
+        }
+        else
+        {
+            if (category === "classA" || category === "a" || category === "A")
+            {
+                if (!(this.classA[index] === undefined))
+                {
+                    return this.classA[index];
+                }
+                else
+                {
+                    return "Array index " + index + " not found.";
+                }
+            }
+            else if (category === "classB" || category === "b" || category === "B")
+            {
+                if (!(this.classB[index] === undefined))
+                {
+                    return this.classB[index];
+                }
+                else
+                {
+                    return "Array index " + index + " not found.";
+                }
+            }
+            else
+            {
+                return "Class category not found";
+            }
+        }
+    },
+    getClassList: function(category)
+    {
+        switch (category)
+        {
+            case "a":
+                return this.classA; break;
+            case "A":
+                return this.classA; break;
+            case "classA":
+                return this.classA; break;
+            case "b":
+                return this.classB; break;
+            case "B":
+                return this.classB; break;
+            case "classB":
+                return this.classB; break;
+            default:
+                return "Class category not found"; break;
+        }
+    },
+    getClassLength: function(category)
+    {
+        switch (category)
+        {
+           case "a": 
+                return this.classA.length; break;
+           case "A": 
+                return this.classA.length; break;
+           case "classA": 
+                return this.classA.length; break;
+           case "b": 
+                return this.classB.length; break;
+            case "B":
+                return this.classB.length; break;
+            case "classB":
+                return this.classB.length; break;
+            default:
+                return "Class category not found"; break; 
+        }
     },
 }
 const footer = 
@@ -168,6 +247,40 @@ const createHeader = () =>
     </nav>
     `;
 }
+const createSidebar = () => 
+{
+    const sidebarQ = document.querySelector("#sidebar");
+
+    sidebarQ.innerHTML = 
+    `
+    <div id="sidebar-menu">
+        <ul class="text-zinc-200 text-2xl">
+            <li><a href="timer.html" class="hover:bg-cyan-900 block text-center p-2">Timer</a></li>
+            <li><a href="stopwatch.html" class="hover:bg-cyan-900 block text-center p-2">Stopwatch</a></li>
+        </ul>
+    </div>
+    <div id="sidebar-pane"></div>
+    `;
+
+    const sidebarMenuQ = document.getElementById("sidebar-menu");
+    const sidebarPaneQ = document.getElementById("sidebar-pane");
+
+    let x = 0; let y = 0;
+
+    do
+    {
+        sidebarMenuQ.classList.add(sidebar.getClass("classA", x));
+        x++;
+    }
+    while (x < sidebar.getClassLength("classA"));
+
+    do
+    {
+        sidebarPaneQ.classList.add(sidebar.getClass("classB", y));
+        y++;
+    }
+    while (y < sidebar.getClassLength("classB"));
+}
 const createFooter = () =>
 {
     const footerQ = document.querySelector("footer");
@@ -213,6 +326,7 @@ const createFooter = () =>
 
 // generate header and footer
 createHeader();
+createSidebar();
 createFooter();
 
 let sbButton = document.getElementById("sidebar-button");
