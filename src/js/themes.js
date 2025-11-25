@@ -1,3 +1,8 @@
+// buttons
+const cyanButton = document.getElementById("cyan-button");
+const emeraldButton = document.getElementById("emerald-button");
+const yellowButton = document.getElementById("yellow-button");
+
 document.addEventListener("DOMContentLoaded", () =>
 {
     const themesButton = document.getElementById("themes-button");
@@ -17,4 +22,32 @@ document.addEventListener("DOMContentLoaded", () =>
             themesDropdown.classList.add("hidden");
         }
     });
+});
+
+// cyan mode (default)
+cyanButton.addEventListener("click", () => 
+{
+    header.setBgColor("bg-cyan-950");
+    dropdown.setBgColor("bg-cyan-950", "hover:bg-cyan-900");
+    sidebar.setBgColor("bg-cyan-950", "hover:bg-cyan-900");
+    main.setGradient("from-cyan-100", "to-cyan-700", "from-50%");
+    footer.setBgColor("bg-cyan-950");
+});
+// emerald mode
+emeraldButton.addEventListener("click", () => 
+{
+    header.setBgColor("bg-emerald-950");
+    dropdown.setBgColor("bg-emerald-950", "hover:bg-emerald-900");
+    sidebar.setBgColor("bg-emerald-950", "hover:bg-emerald-900");
+    main.setGradient("from-emerald-100", "to-emerald-700", "from-50%");
+    footer.setBgColor("bg-emerald-950");
+});
+// yellow mode
+yellowButton.addEventListener("click", () => 
+{
+    header.setBgColor("bg-yellow-950");
+    dropdown.setBgColor("bg-yellow-950", "hover:bg-yellow-900");
+    sidebar.setBgColor("bg-yellow-950", "hover:bg-yellow-900");
+    main.setGradient("from-yellow-100", "to-yellow-700", "from-50%");
+    footer.setBgColor("bg-yellow-950");
 });
