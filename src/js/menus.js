@@ -304,6 +304,8 @@ const createHeader = () =>
                             <li id="cyan-button" class="px-4 py-2 cursor-pointer whitespace-nowrap">Cyan Mode (default)</li>
                             <li id="emerald-button" class="px-4 py-2 cursor-pointer whitespace-nowrap">Emerald Mode</li>
                             <li id="yellow-button" class="px-4 py-2 cursor-pointer whitespace-nowrap">Yellow Mode</li>
+                            <li id="indigo-button" class="px-4 py-2 cursor-pointer whitespace-nowrap">Indigo Mode</li>
+                            <li id="rose-button" class="px-4 py-2 cursor-pointer whitespace-nowrap">Rose Mode</li>
                         </ul>
                     </div>
                 </li>
