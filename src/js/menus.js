@@ -36,8 +36,8 @@ const sidebar =
     isOpen: false,
     bgColor: "bg-cyan-950",
     bgHoverColor: "hover:bg-cyan-900",
-    classA: ["fixed", "top-0", "right-0", "h-full", "w-[0vw]"],
-    classB: ["fixed", "top-0", "left-0", "h-full", "w-[0vw]"],
+    classA: ["fixed", "top-0", "right-0", "z-[1000]", "h-full", "w-[0vw]"],
+    classB: ["fixed", "top-0", "left-0", "z-[1000]", "h-full", "w-[0vw]"],
 
     getWidth: function() {return this.width;},
     setWidth: function(value)
@@ -298,7 +298,7 @@ const createHeader = () =>
                         <i class="fa-solid fa-palette"></i> <i id="dd-arrow-themes" class="fa-solid fa-caret-down"></i>
                     </button>
                     <div id="themes-dropdown" 
-                    class="absolute right-0 mt-2 text-zinc-200 rounded shadow-lg border border-zinc-700 hidden">
+                    class="absolute right-0 z-[1000] mt-2 text-zinc-200 rounded shadow-lg border border-zinc-700 hidden">
                         <ul id="themes-dropdown-list" class="flex flex-col">
                             <li class="px-4 py-2 text-amber-500 whitespace-nowrap">Themes:</li>
                             <li id="cyan-button" class="px-4 py-2 cursor-pointer whitespace-nowrap">Cyan Mode (default)</li>

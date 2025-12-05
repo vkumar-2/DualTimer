@@ -1,227 +1,68 @@
-// stopwatch variables
-const stopwatchHrs = document.getElementById("stopwatch-hours");
-const stopwatchMins = document.getElementById("stopwatch-minutes");
-const stopwatchSecs = document.getElementById("stopwatch-seconds");
-const stopwatchMlsecs = document.getElementById("stopwatch-milliseconds");
+// create objects
+const stopwatch = new Widget('stopwatch', 0, 0, 0, 0, ['hours', 'minutes', 'seconds', 'milliseconds']);
+const observer = new MutationObserver(() => {barPalette();});
 
-const stopwatch = 
+// global variables
+const hours = document.getElementById(stopwatch.getElement(0));
+const minutes = document.getElementById(stopwatch.getElement(1));
+const seconds = document.getElementById(stopwatch.getElement(2));
+const mlseconds = document.getElementById(stopwatch.getElement(3));
+
+// buttons and event listeners
+document.getElementById("start-stopwatch").addEventListener("click", () => {start();});
+document.getElementById("stop-stopwatch").addEventListener("click", () => {stop();});
+
+let ms = document.getElementById(stopwatch.getElement(3));
+let observeCounter = 3;
+let msInterval = null;
+let barCounter;
+
+// event listen #seconds text content
+observer.observe(seconds, 
 {
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    mlseconds: 0,
-    getHours: function() {return this.hours;},
-    getMinutes: function() {return this.minutes;},
-    getSeconds: function() {return this.seconds;},
-    getMlseconds: function() {return this.mlseconds;},
+    characterData: true,
+    childList: true,
+    subtree: true
+});
 
-    // set methods
-    setHours: function(value) 
-    {
-        stopwatchHrs.textContent = tidyInput(value);
-        this.hours = value;
-    },
-    setMinutes: function(value)
-    {
-        stopwatchMins.textContent = tidyInput(value);
-        this.minutes = value;
-    },
-    setSeconds: function(value)
-    {
-        stopwatchSecs.textContent = tidyInput(value);
-        this.seconds = value;
-    },
-    setMlseconds: function(value)
-    {
-        stopwatchMlsecs.textContent = tidyInput(value);
-        this.mlseconds = value;
-    },
-
-    // increment (add) methods
-    addHours: function(value)
-    {
-        let counter = this.getHours();
-
-        // +1 if method calls without parameter
-        if (value === undefined) 
-        {
-            counter++; // increment by 1
-            stopwatchHrs.textContent = tidyInput(counter);
-            this.hours = counter;
-        }
-        else
-        {
-            counter += value; // increment by n
-            stopwatchHrs.textContent = tidyInput(counter);
-            this.hours = counter;
-        }
-    },
-    addMinutes: function(value) 
-    {
-        let counter = this.getMinutes();
-
-        if (value === undefined) 
-        {
-            counter++;
-            stopwatchMins.textContent = tidyInput(counter);
-            this.minutes = counter;
-        }
-        else
-        {
-            counter += value;
-            stopwatchMins.textContent = tidyInput(counter);
-            this.minutes = counter;
-        }
-    },
-    addSeconds: function(value) 
-    {
-        let counter = this.getSeconds();
-
-        if (value === undefined) 
-        {
-            counter++;
-            stopwatchSecs.textContent = tidyInput(counter);
-            this.seconds = counter;
-        }
-        else
-        {
-            counter += value;
-            stopwatchSecs.textContent = tidyInput(counter);
-            this.seconds = counter;
-        }
-    },
-    addMlseconds: function(value) 
-    {
-        let counter = this.getMlseconds();
-
-        if (value === undefined) 
-        {
-            counter++;
-            stopwatchMlsecs.textContent = tidyInput(counter);
-            this.mlseconds = counter;
-        }
-        else
-        {
-            counter += value;
-            stopwatchMlsecs.textContent = tidyInput(counter);
-            this.mlseconds = counter;
-        }
-    },
-
-    // decrement (subtract) methods
-    subHours: function(value) 
-    {
-        let counter = this.getHours();
-
-        // -1 if method calls without parameter
-        if (value === undefined) 
-        {
-            counter--; // decrement by 1
-            stopwatchHrs.textContent = tidyInput(counter);
-            this.hours = counter;
-        }
-        else
-        {
-            counter -= value; // decrement by n
-            stopwatchHrs.textContent = tidyInput(counter);
-            this.hours = counter;
-        }
-    },
-    subMinutes: function(value) 
-    {
-        let counter = this.getMinutes();
-
-        if (value === undefined) 
-        {
-            counter--;
-            stopwatchMins.textContent = tidyInput(counter);
-            this.minutes = counter;
-        }
-        else
-        {
-            counter -= value;
-            stopwatchMins.textContent = tidyInput(counter);
-            this.minutes = counter;
-        }
-    },
-    subSeconds: function(value) 
-    {
-        let counter = this.getSeconds();
-
-        if (value === undefined) 
-        {
-            counter--;
-            stopwatchSecs.textContent = tidyInput(counter);
-            this.seconds = counter;
-        }
-        else
-        {
-            counter -= value;
-            stopwatchSecs.textContent = tidyInput(counter);
-            this.seconds = counter;
-        }
-    },
-    subMlseconds: function(value) 
-    {
-        let counter = this.getMlseconds();
-
-        if (value === undefined) 
-        {
-            counter--;
-            stopwatchMlsecs.textContent = tidyInput(counter);
-            this.mlseconds = counter;
-        }
-        else
-        {
-            counter -= value;
-            stopwatchMlsecs.textContent = tidyInput(counter);
-            this.mlseconds = counter;
-        }
-    },
-}
-function tidyInput(integer)
+function barPalette()
 {
-    if (isNaN(integer))
+    // cycle through bar colour palettes green-300 -> green-900 while stopwatch is running
+    if (observeCounter < 10)
     {
-        return NaN;
-    }
-    else if (integer < 10) 
-    {
-        // auto add 0 next to single digit integers
-        switch (integer)
-        {
-            case 0: return "00"; break;
-            case 1: return "01"; break;
-            case 2: return "02"; break;
-            case 3: return "03"; break;
-            case 4: return "04"; break;
-            case 5: return "05"; break;
-            case 6: return "06"; break;
-            case 7: return "07"; break;
-            case 8: return "08"; break;
-            case 9: return "09"; break;
-            default:
-                return null;
-                break;
-        }
-    }
-    else if (integer >= 60)
-    {
-        return null;
+        progressBar.setBgPalette(observeCounter);
+        observeCounter++;
     }
     else
     {
-        return integer;
+        observeCounter = 3;
     }
 }
-function startStopwatch()
+function start()
 {
-    const msInterval = setInterval(() => 
+    barCounter = 0;
+    progressBar.setBgPalette(observeCounter);
+    progressBar.setEnabled(true);
+
+    // remove all duplicate intervals (if already active)
+    clearInterval(msInterval);
+
+    // stopwatch
+    msInterval = setInterval(() => 
     {
         stopwatch.addMlseconds(10);
+        let currentMs = stopwatch.getMlseconds();
+        if (currentMs >= 1000)
+        {
+            barCounter = 100;
+        }
+        else
+        {
+            barCounter = Math.floor(currentMs / 10);
+        }
 
-        // increment second when milliseconds reach 1000
-        if (stopwatch.getMlseconds() >= 1000)
+        // rollover when 1000 ms is hit
+        if (currentMs >= 1000)
         {
             stopwatch.setMlseconds(0);
             stopwatch.addSeconds(1);
@@ -238,17 +79,16 @@ function startStopwatch()
                     stopwatch.setMinutes(0);
                     stopwatch.addHours(1);
 
+                    // terminate stopwatch when full day passes
                     if (stopwatch.getHours() >= 24)
                     {
                         console.warn("Full day passed: Terminating timer...");
 
-                        // reset timer
                         stopwatch.setHours(0);
                         stopwatch.setMinutes(0);
                         stopwatch.setSeconds(0);
                         stopwatch.setMlseconds(0);
 
-                        // terminate interval
                         clearInterval(msInterval);
                         return;
                     }
@@ -261,8 +101,37 @@ function startStopwatch()
 
             stopwatch.setSeconds(stopwatch.getSeconds());
         }
+        if (currentMs >= 1000)
+        {
+            ms.textContent = "00";
+        }
+        else
+        {
+            ms.textContent = String(barCounter).padStart(2, "0");
+        }
 
-        // display ms (2 digits) without interfering with internal counter
-        stopwatchMlsecs.textContent = String(Math.floor(stopwatch.getMlseconds() / 10)).padStart(2, "0");
+        progressBar.setWidth(barCounter);
     }, 10);
+}
+function stop()
+{
+    progressBar.setEnabled(false);
+    clearInterval(msInterval);
+}
+function set(hours, minutes, seconds, mlseconds)
+{
+    if (!(isNaN(hours) || isNaN(minutes) || isNaN(seconds) || isNaN(mlseconds)))
+    {
+        stopwatch.setHours(hours);
+        stopwatch.setMinutes(minutes);
+        stopwatch.setSeconds(seconds);
+        stopwatch.setMlseconds(mlseconds);
+    }
+}
+function reset()
+{
+    stopwatch.setHours(0);
+    stopwatch.setMinutes(0);
+    stopwatch.setSeconds(0);
+    stopwatch.setMlseconds(0);
 }
