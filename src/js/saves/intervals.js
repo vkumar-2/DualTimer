@@ -40,3 +40,11 @@ if (stopwatch.getMlseconds() >= 1000)
 
     stopwatch.setSeconds(stopwatch.getSeconds());
 }
+
+const object = 
+{
+    setBgPalette: function(value)
+    {
+        document.getElementById(this.getId()).classList.replace(`bg-${this.getBgColor()}-${this.getBgPalette()}00`, `bg-${this.getBgColor()}-${value}00`);
+    }
+}

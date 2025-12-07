@@ -137,6 +137,12 @@ function cyanMode()
         switchCards();
     }
 
+    // stopwatch page
+    if (document.getElementById("stopwatch-page"))
+    {
+
+    }
+
     localStorage.setItem(themeType, "cyan");
 }
 function emeraldMode()
@@ -194,6 +200,47 @@ function emeraldMode()
 
             timer();
             stopwatch();
+        }
+
+        switchCards();
+    }
+
+    // stopwatch page
+    if (document.getElementById("stopwatch-page"))
+    {
+        const switchCards = () => 
+        {
+            const bgClass = ["bg-emerald-400", "bg-emerald-500", "bg-emerald-600", "bg-emerald-700", "bg-emerald-800", "bg-emerald-900", "bg-emerald-950"];
+            const borderClass = "border-emerald-950";
+
+            // lap card
+            const lapCard = () => 
+            {
+                const x = document.querySelector("#lap-card div");
+                const y = document.querySelector("#lap-card-div");
+
+                x.classList.replace(x.classList[0], bgClass[6]);
+                y.classList.replace(y.classList[0], bgClass[4]);
+            }
+            const setCard = () => 
+            {
+
+                document.querySelectorAll("#set-card-div input").forEach(el => 
+                {
+                    swapBgClass(el, "emerald", "700");
+                });
+
+                const header = document.querySelector("#set-card > div:first-child");
+                const body   = document.getElementById("set-card-div");
+
+                header.classList.replace("bg-cyan-950", "bg-emerald-950");
+                body.classList.replace("bg-cyan-800", "bg-emerald-800");
+
+                swapBg700("#set-card-div input", "emerald");
+            }
+            
+            lapCard(); 
+            setCard();
         }
 
         switchCards();
@@ -386,4 +433,41 @@ function roseMode()
     }
 
     localStorage.setItem(themeType, "rose");
+}
+
+// misc functions
+function swapBg700(selector, newColor) 
+{
+    const elements = document.querySelectorAll(selector);
+
+    elements.forEach(el => 
+    {
+        const currentBgClass = Array.from(el.classList).find(cls => cls.startsWith("bg-") && cls.endsWith("-700"));
+
+        if (currentBgClass) 
+        {
+            // Replace bg-<color>-700 to bg-<newColor>-700
+            el.classList.replace(currentBgClass, `bg-${newColor}-700`);
+        } else 
+        {
+            // add bg-<color>-700 if not found
+            el.classList.add(`bg-${newColor}-700`);
+        }
+    });
+}
+
+function swapBgClass(el, newColor, palette = "700") 
+{
+    const currentBg = Array.from(el.classList).find(cls =>
+        cls.startsWith("bg-") && cls.endsWith(`-${palette}`)
+    );
+
+    if (currentBg) 
+    {
+        el.classList.replace(currentBg, `bg-${newColor}-${palette}`);
+    } 
+    else 
+    {
+        el.classList.add(`bg-${newColor}-${palette}`);
+    }
 }

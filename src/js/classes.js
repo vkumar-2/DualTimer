@@ -257,7 +257,18 @@ const progressBar =
     },
     setBgPalette: function(value)
     {
-        document.getElementById(this.getId()).classList.replace(`bg-${this.getBgColor()}-${this.getBgPalette()}00`, `bg-${this.getBgColor()}-${value}00`);
+        const shades = 
+        {
+            3: '#bbf7d0',
+            4: '#86efac',
+            5: '#4ade80',
+            6: '#22c55e',
+            7: '#16a34a',
+            8: '#15803d',
+            9: '#166534',
+        };
+        
+        document.getElementById(this.getId()).style.backgroundColor = shades[value];
         this.bgPalette = value;
     },
     addWidth: function(value) 
@@ -297,7 +308,7 @@ const progressBar =
 // FUNCTIONS
 function loadClass()
 {
-    if (document.getElementById("index-page")) // index page
+    if (document.getElementById("index-page")) // index
     {
         // title
         const title = () =>
@@ -325,8 +336,87 @@ function loadClass()
         title();
         subtitle();
     }
-    else if (document.getElementById("stopwatch-page")) // stopwatch page
+    else if (document.getElementById("stopwatch-page")) // stopwatch
     {
+        // class list
+        const appendClass = () => 
+        {
+            const elements = 
+            {
+                stopwatchBar: ["border-2", "mx-10", "p-3", "bg-cyan-950", "rounded-3xl", "sm:mx-20", "md:mx-30", "lg:mx-40"],
+                stopwatchBarDiv: ["h-[20px]", "bg-neutral-50", "relative", "z-1", "rounded-3xl"],
+                stopwatchBarProgress: ["absolute", "bottom-0", "left-0", "z-2", "h-full", "rounded-3xl"],
+
+                addAttributes: function(property)
+                {
+                    if (property === "stopwatchBar")
+                    {
+                        let bar = document.querySelector("#stopwatch-bar");
+                        for (let i = 0; i < this.getClassLength(property); i++)
+                        {
+                            bar.classList.add(this.getClass(property, i));
+                        }
+                    }
+                    else if (property === "stopwatchBarDiv")
+                    {
+                        let barDiv = document.querySelector("#stopwatch-bar div");
+                        for (let i = 0; i < this.getClassLength(property); i++)
+                        {
+                            barDiv.classList.add(this.getClass(property, i));
+                        }
+                    }
+                    else if (property === "stopwatchBarProgress")
+                    {
+                        let barProgress = document.querySelector("#progress-bar");
+                        for (let i = 0; i < this.getClassLength(property); i++)
+                        {
+                            barProgress.classList.add(this.getClass(property, i));
+                        }
+                    }
+                    else 
+                    {
+                        return null;
+                    }
+                },
+                getClass: function(property, index)
+                {
+                    switch (property)
+                    {
+                        case 'stopwatchBar':
+                            return this.stopwatchBar[index];
+                            break;
+                        case 'stopwatchBarDiv':
+                            return this.stopwatchBarDiv[index];
+                            break;
+                        case 'stopwatchBarProgress':
+                            return this.stopwatchBarProgress[index];
+                            break;
+                        default:
+                            return null;
+                            break;
+                    }
+                },
+                getClassList: function(property)
+                {
+                    for (let i = 0; i < this.getClassLength(property); i++)
+                    {
+                        return this[property];
+                    }
+                },
+                getClassLength: function(property)
+                {
+                    if (property === "stopwatchBar") {return this.stopwatchBar.length;}
+                    else if (property === "stopwatchBarDiv") {return this.stopwatchBarDiv.length;}
+                    else if (property === "stopwatchBarProgress") {return this.stopwatchBarProgress.length;}
+                    else {return null;}
+                },
+            };
+
+            elements.addAttributes("stopwatchBar");
+            elements.addAttributes("stopwatchBarDiv");
+            elements.addAttributes("stopwatchBarProgress");
+        }
+
         // progress bar
         const bar = () => 
         {
@@ -336,8 +426,9 @@ function loadClass()
         }
 
         bar();
+        appendClass();
     }
-    else if (document.getElementById("timer-page")) // timer page
+    else if (document.getElementById("timer-page")) // timer
     {
     }
     else
