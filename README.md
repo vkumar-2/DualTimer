@@ -24,3 +24,19 @@ Begin application by opening the file **index.html** located in `DualTimer/src/i
 ### Interactive Components:
 - **Timer & Stopwatch** - configure and start a countdown and stopwatch timer.
 - **Themes** - change the website theme to any of the following colours: cyan (default), emerald, yellow, indigo, rose.
+
+## Images
+### Home - Desktop View:
+| Cyan Theme |
+| ------------ |
+| ![](./assets/screenshots/home.png) |
+
+### Stopwatch - Tablet View:
+| Indigo Theme | Rose Theme|
+| ------------ | ------------ |
+| ![](./assets/screenshots/stopwatch_ipad.png) | ![](./assets/screenshots/stopwatch_ipad2.png) |
+
+### Timer - Smartphone View:
+| Emerald Theme | Yellow Theme|
+| ------------ | ------------ |
+| ![](./assets/screenshots/timer_iphone.png) | ![](./assets/screenshots/timer_iphone2.png) |
