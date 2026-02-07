@@ -2,7 +2,7 @@
 **DualTimer** is an interactive web application, built with [Tailwind](https://tailwindcss.com/ "Tailwind"), designed to run two independent timers simultaneously. It is an object-oriented program that makes use of JavaScript OOP principles (e.g. class constructors, methods and properties), DOM manipulations and template literals.
 
 ## Setup Instructions
-#### 1. Clone the Repoistory:
+#### 1. Clone the Repository:
 Enter the following in the terminal or command line:
 
 ```
