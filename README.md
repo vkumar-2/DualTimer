@@ -29,14 +29,14 @@ Begin application by opening the file **index.html** located in `DualTimer/src/i
 ### Home - Desktop View:
 | Cyan Theme |
 | ------------ |
-| ![](./assets/screenshots/home.png) |
+| ![](./src/assets/screenshots/home.png) |
 
 ### Stopwatch - Tablet View:
 | Indigo Theme | Rose Theme|
 | ------------ | ------------ |
-| ![](./assets/screenshots/stopwatch_ipad.png) | ![](./assets/screenshots/stopwatch_ipad2.png) |
+| ![](./src/assets/screenshots/stopwatch_ipad.png) | ![](./src/assets/screenshots/stopwatch_ipad2.png) |
 
 ### Timer - Smartphone View:
 | Emerald Theme | Yellow Theme|
 | ------------ | ------------ |
-| ![](./assets/screenshots/timer_iphone.png) | ![](./assets/screenshots/timer_iphone2.png) |
+| ![](./src/assets/screenshots/timer_iphone.png) | ![](./src/assets/screenshots/timer_iphone2.png) |
